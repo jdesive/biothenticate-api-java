@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+group 'com.softwarfare.biothenticate'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.11
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
+
+    compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.25'
+    compile group: 'ch.qos.logback', name:'logback-classic', version: '1.2.3'
+    compile group: 'ch.qos.logback', name:'logback-core', version: '1.2.3'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
